@@ -52,7 +52,6 @@ class PikaInit(object):
                 # 绑定队列
                 self.channel.queue_bind(
                     queue=queue["queue_name"], exchange=exchange["exchange_name"], routing_key=queue["routing_key"])
-                self.channel.basic_qos(prefetch_count=queue.get("prefetch_count", 4))
         self.connection.close()
 
     def publish(self, exchange, routing_key, body):
@@ -67,4 +66,9 @@ class PikaInit(object):
 
     def consume(self, queue):
         self.check_connection()
-        self.channel.basic_consume(queue, )
+        self.channel.basic_qos(prefetch_count=queue.get("prefetch_count", 4))
+        self.channel.basic_consume(queue=queue["queue_name"], on_message_callback=self.on_message, auto_ack=False)
+
+    def on_message(self, channel, method, properties, body):
+        print(body)
+        channel.basic_ack(delivery_tag=method.delivery_tag)
