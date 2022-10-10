@@ -66,16 +66,16 @@ class DrinkingMode(Observer):
             print("水已烧开！可以用来饮用了。")
 
 
-def testWaterHeater():
+def test_water_heater():
     heater = WaterHeater()
-    washing_obser = WashingMode()
-    drinking_obser = DrinkingMode()
-    heater.add_observer(washing_obser)
-    heater.add_observer(drinking_obser)
+    washing_observe = WashingMode()
+    drinking_observe = DrinkingMode()
+    heater.add_observer(washing_observe)
+    heater.add_observer(drinking_observe)
     heater.set_temperature(40)
     heater.set_temperature(60)
     heater.set_temperature(100)
 
 
 if __name__ == "__main__":
-    testWaterHeater()
+    test_water_heater()
