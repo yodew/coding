@@ -9,6 +9,9 @@
 """
 import logging
 import logging.handlers  # handlers要单独import
+import re
+
+from pydicom import Dataset
 
 
 def main():
@@ -23,13 +26,18 @@ def main():
 
 def main_2():
     import socket
+    ds = Dataset()
+    ds.StudyInstanceUID = "1.2.840.113619.2.340.3.2831184007.204.1564910584.894"
+    ds.QueryRetrieveLevel = 'STUDY'
     udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    print(socket.AF_INET, socket.SOCK_DGRAM)
-    client_name = "dn-pacs"
-    action = "c-find start"
-    ack_msg = f"{client_name} {action}"
     addr = ('192.168.253.192', 514)
-    udp.sendto(ack_msg.encode('utf8'), addr)
+    print(socket.AF_INET, socket.SOCK_DGRAM)
+    client_name = b"test-pacs"
+
+    client_name = str(client_name, "utf-8")
+    ack_msg = f"{client_name} start c-find dataset {str(ds)}"
+    msg = f"{udp.getsockname()[0]} AE: {ack_msg}"
+    udp.sendto(msg.encode('utf8'), addr)
 
 
 if __name__ == '__main__':

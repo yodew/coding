@@ -2,7 +2,6 @@ import websockets
 from sanic import Blueprint
 from sanic.response import json
 
-
 hello_bp = Blueprint("hello", version=1)
 hello_bp2 = Blueprint("hello2", version=2)
 
@@ -23,6 +22,7 @@ async def hello(request):
         print("接收来自服务端的信息:{}".format(str_data))
 
     return json({"content": "hello"})
+
 
 @hello_bp2.route("/hello")
 async def hello2(request):

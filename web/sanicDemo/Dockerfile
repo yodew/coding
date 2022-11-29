@@ -1,12 +1,11 @@
-FROM python:3.8-alpine
+FROM sanicframework/sanic:3.8-latest
 
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+WORKDIR /sanic
 
 COPY . .
 
-VOLUME [ "/data" ]
+RUN pip install -r requirements.txt
+
 EXPOSE 8000
-CMD ["python", "-u", "-m", "weiguan.api.app"]
+
+CMD ["python", "server.py"]
