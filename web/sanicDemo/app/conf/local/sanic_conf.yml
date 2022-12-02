@@ -1,0 +1,8 @@
+ACCESS_LOG: True
+
+# sanic extend config
+
+# openapi
+OAS_UI_REDOC: False
+OAS_UI_SWAGGER: True
+OAS_UI_DEFAULT: swagger
