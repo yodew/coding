@@ -11,8 +11,8 @@ import asyncio
 import json
 import os
 
-from consul.aio import Consul
 from consul import Consul as SyncConsul
+from consul.aio import Consul
 from sanic import Sanic
 from sanic_ext import Extend
 from tortoise.contrib.sanic import register_tortoise
