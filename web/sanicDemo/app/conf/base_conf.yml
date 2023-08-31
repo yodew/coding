@@ -1,0 +1,16 @@
+# 应用名
+APP_NAME: SANIC-DEMO
+
+# 配置环境  LOCAL CONSUL
+CONF_ENV: LOCAL
+# 服务中心 DEFAULT CONSUL
+SERVICE_CENTER: CONSUL
+
+
+CONSUL:
+  host: 192.168.253.246
+  port: 8500
+  service_id: ceaf69c6-a954-0800-8235-c947a86cd2db
+
+
+
