@@ -18,6 +18,7 @@ from sanic_ext import Extend
 from tortoise.contrib.sanic import register_tortoise
 
 from app.api import api_bp, ws_bp
+from app.ext.redis import redis_cache, redis_pb
 from app.middlewares.auth import check_auth
 
 
@@ -35,6 +36,8 @@ register_tortoise(app, db_url=app.config['MYSQL_URL'], modules={"models": ["mode
                   generate_schemas=False)
 app.blueprint([api_bp, ws_bp])
 check_auth(app)
+redis_cache.init_app(app)
+redis_pb.init_app(app)
 Extend(app)
 
 

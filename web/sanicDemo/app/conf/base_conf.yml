@@ -14,3 +14,7 @@ CONSUL:
 
 
 
+# 缓存
+REDIS: "redis://:test@127.0.0.1:6379/0?decode_responses=true"
+# 队列
+REDIS_P_B: "redis://:test@127.0.0.1:6379/1"
